@@ -9,7 +9,7 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-import { getContacts } from "./data";
+import { createEmptyContact, getContacts } from "./data";
 
 // generate Internal CSS on the <head />
 // import appStylesHref from "~/app.css";
@@ -24,6 +24,11 @@ export const links: LinksFunction = () => [
 export const loader = async () => {
   const contacts = await getContacts();
   return { contacts };
+};
+
+export const action = async () => {
+  const contact = await createEmptyContact();
+  return { contact };
 };
 
 export default function App() {
